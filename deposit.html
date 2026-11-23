@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Candia88 — Beranda</title>
+<title>Candia88 — Deposit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
     --text-muted: #ffcccc;
     --green-promo: #28a745;
     --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
   }
 
   * { 
@@ -36,282 +36,402 @@
     background-color: var(--bg-main);
     color: var(--text-light);
     -webkit-font-smoothing: antialiased;
-    /* Padding bawah yang cukup agar konten terakhir tidak tertutup bottom nav */
-    padding-bottom: 90px; 
+    padding-bottom: 90px; /* Space for fixed bottom nav */
     overflow-x: hidden;
   }
 
-  /* ============ HEADER LOGO ============ */
+  /* ============ HEADER LOGO & DEPOSIT BUTTON ============ */
   .app-header {
-    padding: 20px 16px;
-    text-align: center;
-    background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-main) 100%);
-    display: flex;
-    justify-content: center;
-  }
-
-  .app-header img {
-    max-width: 200px;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-  }
-
-  /* ============ TOP MENU (Kategori) ============ */
-  .top-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-dark);
-    padding: 12px 10px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    border-bottom: 2px solid rgba(0,0,0,0.4);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-main) 100%);
   }
 
-  .menu-item {
+  .app-header .logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .btn-header-deposit {
+    background-color: #008a3d; /* Hijau */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 6px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 6px;
-    text-decoration: none;
-    color: var(--text-light);
-    flex: 1;
-    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   }
 
-  .menu-item:active { transform: scale(0.95); }
-
-  .menu-item img {
-    width: clamp(32px, 8vw, 42px);
-    height: clamp(32px, 8vw, 42px);
-    object-fit: contain;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+  .btn-header-deposit svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
-  .menu-item span {
-    font-size: clamp(11px, 2.5vw, 13px);
-    font-weight: 700;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    white-space: nowrap;
+  /* ============ MAIN CONTENT ============ */
+  .content-container {
+    padding: 20px 16px;
   }
 
-  /* ============ SECTION TITLE ============ */
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 16px 12px;
-  }
-
-  .section-title {
+  .page-title {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: clamp(18px, 4vw, 22px);
+    font-size: 24px;
     font-weight: 800;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
   }
 
-  .section-title img {
-    width: clamp(28px, 7vw, 36px);
-    height: clamp(28px, 7vw, 36px);
+  .page-title svg {
+    width: 32px;
+    height: 32px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
-  .btn-view-all {
-    background-color: var(--bg-darker);
-    color: var(--text-light);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: clamp(11px, 2.5vw, 13px);
-    font-weight: 700;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    transition: background 0.2s;
-  }
-
-  .btn-view-all:active { background-color: #4a0000; }
-
-  /* ============ PROVIDER GRID (Slots) ============ */
-  .provider-container {
-    position: relative;
-    padding: 0 16px;
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 24px;
     margin-bottom: 24px;
   }
 
-  .provider-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px 8px; /* Jarak vertikal lebih besar untuk badge */
-    padding: 10px 0;
-  }
-
-  .provider-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    position: relative;
-    width: 100%;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .provider-item:active { transform: scale(0.92); }
-
-  .provider-icon-wrap {
-    position: relative;
-    width: clamp(48px, 13vw, 60px);
-    height: clamp(48px, 13vw, 60px);
-    margin-bottom: 8px;
-  }
-
-  .provider-icon {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #b30000, #5c0000);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 
-      inset 0 -4px 8px rgba(0,0,0,0.6), 
-      0 4px 8px rgba(0,0,0,0.4),
-      0 0 0 2px rgba(255,255,255,0.1);
-    overflow: hidden;
-  }
-
-  .provider-icon img {
-    width: 75%;
-    height: 75%;
-    object-fit: contain;
-  }
-  
-  /* Fallback text icon */
-  .provider-icon .text-icon {
-    font-size: clamp(16px, 4vw, 22px);
-    font-weight: 800;
-    color: var(--accent-orange);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  }
-
-  .provider-label {
-    font-size: clamp(10px, 2.5vw, 12px);
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.2;
-    color: var(--text-light);
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Maksimal 2 baris */
-    -webkit-box-orient: vertical;
-  }
-
-  /* Badge Promo/Live */
-  .badge {
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(7px, 1.8vw, 9px);
-    font-weight: 800;
-    padding: 2px 5px;
-    border-radius: 4px;
-    color: white;
-    text-transform: uppercase;
-    white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    z-index: 2;
-  }
-
-  .badge.promo { background-color: var(--green-promo); }
-  .badge.live { background-color: #ff3333; }
-
-  /* Panah Navigasi Kiri Kanan */
-  .nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 64px;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10;
-    backdrop-filter: blur(2px);
-  }
-  .nav-arrow.left { left: 0; border-radius: 0 8px 8px 0; }
-  .nav-arrow.right { right: 0; border-radius: 8px 0 0 8px; }
-
-  /* ============ BOTTOM SECTIONS (Sports & Poker) ============ */
-  .bottom-sections {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    padding: 20px 16px;
-    background-color: var(--bg-dark);
-    border-top: 1px solid rgba(255,255,255,0.15);
-  }
-
-  .promo-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .promo-header {
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: clamp(14px, 3.5vw, 16px);
-    font-weight: 800;
-  }
-
-  .promo-header img { 
-    width: clamp(20px, 5vw, 26px); 
-    height: clamp(20px, 5vw, 26px); 
-  }
-
-  .promo-banner {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: #333;
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    padding-bottom: 8px;
+    cursor: pointer;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-family: inherit;
   }
 
-  .promo-banner img {
+  .tab-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tab-btn.active {
+    color: var(--accent-orange);
+  }
+
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .btn-play {
+    height: 3px;
     background-color: var(--accent-orange);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    border-radius: var(--radius-sm);
-    font-weight: 800;
-    font-size: clamp(12px, 3vw, 14px);
-    text-decoration: none;
-    box-shadow: 0 4px 0 var(--accent-orange-hover);
-    transition: transform 0.1s, box-shadow 0.1s;
-    display: block;
+    border-radius: 3px 3px 0 0;
   }
 
-  .btn-play:active {
-    transform: translateY(4px);
-    box-shadow: none;
+  /* Form Label */
+  .form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  /* Bank Selection */
+  .bank-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .bank-card {
+    background-color: var(--bg-main);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: all 0.2s;
+  }
+
+  .bank-card input {
+    display: none;
+  }
+
+  .bank-card .radio-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .bank-card .radio-dot::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .bank-card input:checked + .radio-dot::after {
+    opacity: 1;
+  }
+
+  .bank-card:has(input:checked) {
+    border-color: #fff;
+    background-color: #e60000; /* Lebih terang saat dipilih */
+  }
+
+  .bank-card img {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Alert Box */
+  .alert-box {
+    background-color: #ff1a1a;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .alert-box svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
+
+  /* Nominal Section */
+  .nominal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .nominal-header .form-label {
+    margin-bottom: 0;
+  }
+
+  .btn-settings {
+    background-color: var(--accent-orange);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  .btn-settings svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+
+  .nominal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .nominal-btn {
+    background-color: rgba(255,255,255,0.15);
+    border: 1px solid transparent;
+    color: var(--text-light);
+    padding: 10px 4px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .nominal-btn:active {
+    background-color: var(--accent-orange);
+  }
+
+  /* Input Fields */
+  .input-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .input-wrapper .icon-left {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+  }
+
+  .input-wrapper .icon-left svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .input-wrapper input,
+  .input-wrapper select,
+  .input-wrapper textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    padding: 14px 12px 14px 0;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+  }
+
+  .input-wrapper input::placeholder,
+  .input-wrapper textarea::placeholder {
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Select Dropdown */
+  .input-wrapper select {
+    appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .input-wrapper select option {
+    background-color: var(--bg-darker);
+    color: var(--text-light);
+  }
+
+  .input-wrapper .icon-right {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-wrapper .icon-right svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255,255,255,0.5);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  /* Bonus Field Special Styling */
+  .input-wrapper.bonus-wrapper {
+    background-color: #e60000; /* Merah terang */
+    border: none;
+  }
+  
+  .input-wrapper.bonus-wrapper select {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Textarea */
+  .input-wrapper.textarea-wrapper {
+    align-items: flex-start;
+  }
+  
+  .input-wrapper.textarea-wrapper .icon-left {
+    margin-top: 14px;
+  }
+
+  .input-wrapper textarea {
+    resize: vertical;
+    min-height: 48px;
+  }
+
+  /* Submit Button */
+  .btn-submit {
+    width: 100%;
+    background-color: #e60000; /* Merah terang */
+    color: rgba(255,255,255,0.5); /* Teks redup default */
+    border: none;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: not-allowed;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+
+  /* Active state class added via JS */
+  .btn-submit.active {
+    background-color: #ff0000;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255,0,0,0.4);
+  }
+
+  .btn-submit.active:active {
+    transform: scale(0.98);
   }
 
   /* ============ BOTTOM NAVIGATION (Fixed) ============ */
@@ -320,7 +440,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 72px; /* Tinggi fix */
+    height: 72px;
     background-color: var(--bg-nav);
     display: flex;
     align-items: stretch;
@@ -328,7 +448,6 @@
     box-shadow: 0 -4px 15px rgba(0,0,0,0.6);
   }
 
-  /* Profil / Saldo Box (Kiri) */
   .nav-profile-box {
     background-color: var(--accent-orange);
     padding: 0 16px;
@@ -368,7 +487,6 @@
     width: 100%;
   }
 
-  /* Menu Items (Kanan) */
   .nav-menu-items {
     display: flex;
     flex: 1;
@@ -401,19 +519,12 @@
     align-items: center;
   }
 
-  .nav-item .icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
   .nav-item span {
     font-size: clamp(10px, 2.5vw, 11px);
     font-weight: 700;
     white-space: nowrap;
   }
 
-  /* SVG Icons */
   .svg-icon {
     width: 24px;
     height: 24px;
@@ -423,227 +534,189 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-
 </style>
 </head>
 <body>
 
-  <!-- HEADER LOGO -->
+  <!-- HEADER -->
   <header class="app-header">
-    <img src="assets/candia88.jpg" alt="Candia88" onerror="this.src='https://via.placeholder.com/220x60/d10000/ffffff?text=CANDIA88'">
+    <!-- Sesuaikan path gambarnya -->
+    <img src="assets/candia88.jpg" alt="Candia88" class="logo" onerror="this.src='https://via.placeholder.com/150x40/d10000/ffffff?text=CANDIA88'">
+    
+    <a href="/deposit" class="btn-header-deposit">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 4v16m-8-8h16" stroke-linecap="round"/>
+      </svg>
+      Deposit
+    </a>
   </header>
 
-  <!-- TOP MENU KATEGORI -->
-  <nav class="top-menu">
-    <a href="#" class="menu-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/2665/2665801.png" alt="Eksklusif" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      <span>Eksklusif</span>
-    </a>
-    <a href="#" class="menu-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/3334/3334847.png" alt="Sports" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      <span>Sports+</span>
-    </a>
-    <a href="#" class="menu-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/6770/6770823.png" alt="Slots" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      <span>Slots</span>
-    </a>
-    <a href="#" class="menu-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/10447/10447748.png" alt="Casino" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      <span>Casino</span>
-    </a>
-    <a href="#" class="menu-item">
-      <img src="https://cdn-icons-png.flaticon.com/512/8309/8309553.png" alt="Poker" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      <span>Poker</span>
-    </a>
-  </nav>
-
-  <!-- SECTION SLOTS -->
-  <div class="section-header">
-    <div class="section-title">
-      <img src="https://cdn-icons-png.flaticon.com/512/6770/6770823.png" alt="Slots" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-      Slots
-    </div>
-    <a href="#" class="btn-view-all">Lihat semua</a>
-  </div>
-
-  <div class="provider-container">
-    <div class="nav-arrow left">&lt;</div>
-    <div class="nav-arrow right">&gt;</div>
-
-    <!-- ID game-link untuk JavaScript -->
-    <div class="provider-grid game-link">
-      <!-- Baris 1 -->
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="font-size: clamp(22px, 5vw, 28px);">🔥</span>
-          </div>
-        </div>
-        <span class="provider-label">Hot</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon">S</span>
-          </div>
-          <span class="badge live">LIVE</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">Stream n'Spin</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon">SM</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">Slot Mania</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon">M</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">Microgaming</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon">5G</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">5G Games</span>
-      </div>
-
-      <!-- Baris 2 -->
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #f5b544;">💎</span>
-          </div>
-        </div>
-        <span class="provider-label">Exclusive</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #00d2ff;">★</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">IDNSLOT</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #ff6b6b;">POP</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">PP POP</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #ff9f43;">H</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">Habanero</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #feca57;">♠</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">Spadegaming</span>
-      </div>
-
-      <!-- Baris 3 -->
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #ff9f43; font-size: clamp(22px, 5vw, 28px);">N</span>
-          </div>
-        </div>
-        <span class="provider-label">New</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="font-size: 14px;">PLAY</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">PragmaticPlay</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="font-size: 16px;">PG</span>
-          </div>
-          <span class="badge promo">PROMO</span>
-        </div>
-        <span class="provider-label" style="margin-top: 6px;">PG Soft</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #feca57; font-size: clamp(22px, 5vw, 28px);">⚡</span>
-          </div>
-        </div>
-        <span class="provider-label">Nolimit City</span>
-      </div>
-      <div class="provider-item">
-        <div class="provider-icon-wrap">
-          <div class="provider-icon">
-            <span class="text-icon" style="color: #feca57; font-size: 14px;">JILI</span>
-          </div>
-        </div>
-        <span class="provider-label">JILI</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- BOTTOM SECTIONS (SPORTS & POKER) -->
-  <div class="bottom-sections">
-    <!-- Sports -->
-    <div class="promo-card">
-      <div class="promo-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/3334/3334847.png" alt="Sports" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-        Sports+
-      </div>
-      <div class="promo-banner game-link">
-        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=400&auto=format&fit=crop" alt="Sports Banner">
-      </div>
-      <a href="#" class="btn-play game-link">Main Sports+</a>
+  <!-- KONTEN UTAMA -->
+  <main class="content-container">
+    
+    <!-- Judul Halaman -->
+    <div class="page-title">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        <line x1="12" y1="2" x2="12" y2="4" />
+        <line x1="12" y1="20" x2="12" y2="22" />
+      </svg>
+      Deposit
     </div>
 
-    <!-- Poker -->
-    <div class="promo-card">
-      <div class="promo-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/8309/8309553.png" alt="Poker" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
-        Poker
-      </div>
-      <div class="promo-banner game-link">
-        <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=400&auto=format&fit=crop" alt="Poker Banner">
-      </div>
-      <a href="#" class="btn-play game-link">Main Poker</a>
+    <!-- Tab Navigasi -->
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-bank" onclick="switchTab('bank')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="21" x2="21" y2="21"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <polyline points="3 10 12 3 21 10"/>
+          <line x1="6" y1="10" x2="6" y2="21"/>
+          <line x1="10" y1="10" x2="10" y2="21"/>
+          <line x1="14" y1="10" x2="14" y2="21"/>
+          <line x1="18" y1="10" x2="18" y2="21"/>
+        </svg>
+        Bank
+      </button>
+      <button class="tab-btn" id="tab-qris" onclick="switchTab('qris')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <rect x="7" y="7" width="3" height="3"/>
+          <rect x="14" y="7" width="3" height="3"/>
+          <rect x="7" y="14" width="3" height="3"/>
+          <rect x="14" y="14" width="3" height="3"/>
+        </svg>
+        QRIS
+      </button>
     </div>
-  </div>
+
+    <!-- Form Bank (Tampil Default) -->
+    <div id="form-bank">
+      <label class="form-label">Pilih Bank</label>
+      <div class="bank-grid">
+        <!-- Pilihan BCA -->
+        <label class="bank-card">
+          <input type="radio" name="bank" value="BCA" onchange="enableSubmit()">
+          <div class="radio-dot"></div>
+          <!-- Ganti URL gambar dengan logo BCA asli -->
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="BCA">
+        </label>
+
+        <!-- Pilihan BRI -->
+        <label class="bank-card">
+          <input type="radio" name="bank" value="BRI" onchange="enableSubmit()">
+          <div class="radio-dot"></div>
+          <!-- Ganti URL gambar dengan logo BRI asli -->
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/2560px-BANK_BRI_logo.svg.png" alt="BRI" style="background:#fff; padding:2px 4px; border-radius:4px;">
+        </label>
+      </div>
+
+      <!-- Alert Box -->
+      <div class="alert-box">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        Silahkan memilih salah satu Bank terlebih dahulu.
+      </div>
+    </div>
+
+    <!-- Form QRIS (Sembunyikan Default) -->
+    <div id="form-qris" style="display: none;">
+       <div class="alert-box" style="margin-top: 20px; background-color: var(--accent-orange); color: #000;">
+        <svg viewBox="0 0 24 24" style="fill:#000;">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12" stroke="#000"/>
+          <line x1="12" y1="8" x2="12.01" y2="8" stroke="#000"/>
+        </svg>
+        Silahkan scan QRIS yang akan muncul setelah mengisi nominal.
+      </div>
+    </div>
+
+    <!-- Pilih Nominal -->
+    <div class="nominal-header">
+      <label class="form-label">Pilih nominal</label>
+      <button class="btn-settings">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="nominal-grid">
+      <button class="nominal-btn" onclick="setNominal(50000)">Rp50.000</button>
+      <button class="nominal-btn" onclick="setNominal(100000)">Rp100.000</button>
+      <button class="nominal-btn" onclick="setNominal(200000)">Rp200.000</button>
+      <button class="nominal-btn" onclick="setNominal(500000)">Rp500.000</button>
+    </div>
+
+    <!-- Input Jumlah -->
+    <div class="input-group">
+      <label>Jumlah</label>
+      <div class="input-wrapper">
+        <div class="icon-left">
+          <!-- Ikon Koin -->
+          <svg viewBox="0 0 24 24" style="color: #feca57;">
+            <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/>
+            <path d="M12 6v12M9 9h6M9 15h6"/>
+          </svg>
+        </div>
+        <input type="text" id="input-amount" placeholder="Rp 50.000" readonly>
+      </div>
+    </div>
+
+    <!-- Pilih Bonus -->
+    <div class="input-group">
+      <div class="input-wrapper bonus-wrapper">
+        <div class="icon-left">
+          <!-- Ikon Kado -->
+          <svg viewBox="0 0 24 24" style="color: #fff;">
+            <polyline points="20 12 20 22 4 22 4 12"/>
+            <rect x="2" y="7" width="20" height="5"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <select id="select-bonus">
+          <option value="" disabled selected>Pilih Bonus</option>
+          <option value="none">Tanpa Bonus</option>
+          <option value="10">Bonus 10%</option>
+          <option value="20">Bonus 20%</option>
+        </select>
+        <div class="icon-right">
+          <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catatan -->
+    <div class="input-group">
+      <label>Catatan</label>
+      <div class="input-wrapper textarea-wrapper">
+        <div class="icon-left">
+          <!-- Ikon Pensil -->
+          <svg viewBox="0 0 24 24" style="color: #feca57;">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+          </svg>
+        </div>
+        <textarea id="input-note" placeholder="Tulis catatan (opsional)"></textarea>
+      </div>
+    </div>
+
+    <!-- Tombol Kirim -->
+    <button class="btn-submit" id="btn-submit" onclick="submitDeposit()">Kirim</button>
+  </main>
 
   <!-- BOTTOM NAVIGATION (FIXED) -->
   <nav class="bottom-nav">
-    <!-- Saldo & Profil (Diisi via JS) -->
+    <!-- Saldo & Profil Dinamis -->
     <div class="nav-profile-box">
-      <div class="balance" id="user-balance">
-        IDR 0
-      </div>
+      <div class="balance" id="user-balance">IDR 0</div>
       <div class="username" id="user-nickname">
         <svg class="svg-icon" viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke-width: 3; flex-shrink: 0;">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -703,54 +776,82 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. SIMULASI DATA USER DARI DATABASE / API
-      // Ganti nilai ini dengan data yang di-fetch dari backend Anda
-      const userData = {
-        nickname: "Ldrz666",
-        balance: 0 // Ubah ke 0 untuk mengetes redirect deposit, ubah ke >0 (misal 57000) untuk tes sebaliknya
-      };
+    // 1. SIMULASI DATA USER
+    const userData = {
+      nickname: "Ldrz666",
+      balance: 57 
+    };
 
-      // 2. RENDER DATA KE TAMPILAN
+    // 2. RENDER DATA USER KE BOTTOM NAV
+    document.addEventListener('DOMContentLoaded', () => {
       const balanceEl = document.getElementById('user-balance');
       const nicknameEl = document.getElementById('user-nickname');
 
-      // Format saldo dengan pemisah ribuan
       const formattedBalance = new Intl.NumberFormat('id-ID').format(userData.balance);
       balanceEl.textContent = `IDR ${formattedBalance}`;
-      
-      // Ganti teks nickname tanpa menghapus ikon SVG
       nicknameEl.querySelector('span').textContent = userData.nickname;
-
-      // 3. LOGIKA REDIRECT JIKA SALDO 0
-      const gameLinks = document.querySelectorAll('.game-link');
-      
-      if (userData.balance <= 0) {
-        // Jika saldo 0 atau minus, ubah semua klik game menjadi arahkan ke /deposit
-        gameLinks.forEach(link => {
-          link.style.cursor = 'pointer'; // Pastikan kursor menunjuk
-          
-          link.addEventListener('click', (e) => {
-            e.preventDefault(); // Cegah aksi default (jika ada tag <a>)
-            // Redirect ke halaman deposit
-            window.location.href = '/deposit'; 
-            
-            // Opsional: Anda bisa ganti dengan alert untuk testing
-            // alert("Saldo Anda 0. Mengarahkan ke halaman Deposit...");
-          });
-        });
-      } else {
-        // Jika saldo ada, biarkan link berjalan normal
-        // (Anda bisa menambahkan logika buka game / modal di sini)
-        gameLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log("Membuka game...");
-            // window.location.href = '/main-game';
-          });
-        });
-      }
     });
+
+    // 3. FUNGSI PILIH NOMINAL
+    function setNominal(amount) {
+      const input = document.getElementById('input-amount');
+      // Format angka jadi Rupiah (contoh: 50000 -> Rp 50.000)
+      const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
+      input.value = formatted.replace("Rp", "Rp "); 
+    }
+
+    // 4. FUNGSI SWITCH TAB (BANK / QRIS)
+    function switchTab(type) {
+      const tabBank = document.getElementById('tab-bank');
+      const tabQris = document.getElementById('tab-qris');
+      const formBank = document.getElementById('form-bank');
+      const formQris = document.getElementById('form-qris');
+
+      if (type === 'bank') {
+        tabBank.classList.add('active');
+        tabQris.classList.remove('active');
+        formBank.style.display = 'block';
+        formQris.style.display = 'none';
+      } else {
+        tabQris.classList.add('active');
+        tabBank.classList.remove('active');
+        formQris.style.display = 'block';
+        formBank.style.display = 'none';
+        
+        // Jika pindah ke QRIS, tombol submit langsung aktif (karena tidak butuh pilih bank)
+        document.getElementById('btn-submit').classList.add('active');
+        document.getElementById('btn-submit').disabled = false;
+      }
+    }
+
+    // 5. FUNGSI AKTIFKAN TOMBOL KIRIM JIKA BANK DIPILIH
+    function enableSubmit() {
+      const submitBtn = document.getElementById('btn-submit');
+      submitBtn.classList.add('active');
+      submitBtn.disabled = false;
+    }
+
+    // 6. FUNGSI KIRIM DEPOSIT
+    function submitDeposit() {
+      const btn = document.getElementById('btn-submit');
+      const amount = document.getElementById('input-amount').value;
+
+      if (!btn.classList.contains('active')) return;
+
+      if (!amount) {
+        alert("Silahkan pilih nominal deposit terlebih dahulu.");
+        return;
+      }
+
+      // Simulasi loading
+      const originalText = btn.innerText;
+      btn.innerText = "Memproses...";
+      
+      setTimeout(() => {
+        btn.innerText = originalText;
+        alert("Deposit Berhasil diajukan! (Simulasi)");
+      }, 1000);
+    }
   </script>
 </body>
 </html>

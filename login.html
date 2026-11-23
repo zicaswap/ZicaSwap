@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candia88 — Masuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070d;
+    --panel: #0e0e17;
+    --card: #111120;
+    --stroke: rgba(255,255,255,0.08);
+    --stroke-strong: rgba(255,255,255,0.14);
+    --text: #f4f4f8;
+    --muted: #8b8fa3;
+    --brand-1: #6d5dfc;
+    --brand-2: #a78bfa;
+    --accent: #f5b544;
+    --danger: #ff5c72;
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ============ PANEL BRANDING (kiri) ============ */
+  .brand-panel {
+    position: relative;
+    flex: 1.05;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 60px;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 500px at 15% 10%, rgba(109,93,252,0.28), transparent 60%),
+      radial-gradient(700px 500px at 90% 90%, rgba(245,181,68,0.16), transparent 60%),
+      linear-gradient(160deg, #0b0a18 0%, #08080f 100%);
+    border-right: 1px solid var(--stroke);
+  }
+
+  .brand-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at 30% 30%, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 30% 30%, #000 0%, transparent 75%);
+    pointer-events: none;
+  }
+
+  .brand-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand-1), var(--brand-2) 60%, var(--accent));
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.5px;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(109,93,252,0.45);
+  }
+
+  .brand-top span {
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 1.5px;
+  }
+
+  .brand-hero {
+    position: relative;
+    z-index: 2;
+    max-width: 480px;
+  }
+
+  .brand-hero h2 {
+    font-size: clamp(30px, 3.2vw, 44px);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .brand-hero h2 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--brand-2), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .brand-hero p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 400px;
+  }
+
+  .stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--stroke);
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .stat span {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ============ PANEL FORM (kanan) ============ */
+  .form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 28px;
+    background: var(--panel);
+  }
+
+  .form-card {
+    width: 100%;
+    max-width: 400px;
+    animation: rise 0.65s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-head { margin-bottom: 34px; }
+
+  .form-head .eyebrow {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--brand-2);
+    background: rgba(167,139,250,0.1);
+    border: 1px solid rgba(167,139,250,0.22);
+    padding: 5px 11px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .form-head h1 {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    margin-bottom: 8px;
+  }
+
+  .form-head p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* --- field --- */
+  .field { margin-bottom: 18px; }
+
+  .field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #b9bccb;
+    margin-bottom: 8px;
+  }
+
+  .control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #0b0b16;
+    border: 1px solid var(--stroke-strong);
+    border-radius: var(--radius);
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+
+  .control:focus-within {
+    border-color: var(--brand-1);
+    background: #0d0d1c;
+    box-shadow: 0 0 0 4px rgba(109,93,252,0.16);
+  }
+
+  .control.invalid {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 4px rgba(255,92,114,0.14);
+  }
+
+  .control svg {
+    flex: none;
+    margin-left: 15px;
+    width: 18px;
+    height: 18px;
+    stroke: var(--muted);
+    transition: stroke .2s;
+  }
+
+  .control:focus-within svg { stroke: var(--brand-2); }
+
+  .control input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 14px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14.5px;
+  }
+
+  .control input::placeholder { color: #5b5f75; }
+
+  .control .action {
+    flex: none;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 0 15px;
+    height: 100%;
+    cursor: pointer;
+    transition: color .2s;
+  }
+
+  .control .action:hover { color: var(--brand-2); }
+
+  .error-text {
+    display: none;
+    font-size: 12px;
+    color: var(--danger);
+    margin-top: 7px;
+    font-weight: 500;
+  }
+
+  .control.invalid ~ .error-text { display: block; }
+
+  /* --- baris opsi --- */
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 6px 0 26px;
+    font-size: 13px;
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #a9adc0;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+  }
+
+  .check input {
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid var(--stroke-strong);
+    border-radius: 5px;
+    background: #0b0b16;
+    cursor: pointer;
+    position: relative;
+    transition: background .18s, border-color .18s;
+  }
+
+  .check input:checked {
+    background: var(--brand-1);
+    border-color: var(--brand-1);
+  }
+
+  .check input:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1.5px;
+    width: 4px; height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .link {
+    color: var(--brand-2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .2s;
+  }
+  .link:hover { color: var(--accent); }
+
+  /* --- tombol utama --- */
+  .btn-primary {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--brand-1), #8b5cf6 55%, var(--brand-2));
+    background-size: 180% auto;
+    transition: background-position .5s, transform .12s, box-shadow .3s;
+    box-shadow: 0 10px 26px rgba(109,93,252,0.35);
+  }
+
+  .btn-primary:hover {
+    background-position: right center;
+    box-shadow: 0 12px 30px rgba(167,139,250,0.4);
+  }
+
+  .btn-primary:active { transform: scale(0.985); }
+
+  .btn-primary:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-primary .loader {
+    display: none;
+    width: 17px;
+    height: 17px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    margin-right: 9px;
+    animation: spin .7s linear infinite;
+    vertical-align: -3px;
+  }
+
+  .btn-primary.loading .loader { display: inline-block; }
+  .btn-primary.loading .label { opacity: .85; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* --- pemisah & footer --- */
+  .separator {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0 22px;
+    color: #5b5f75;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--stroke);
+  }
+
+  .signup {
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  .legal {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: #55596d;
+  }
+
+  /* ============ RESPONSIF ============ */
+  @media (max-width: 960px) {
+    .brand-panel { display: none; }
+    .form-panel { flex: 1; }
+    body { background: var(--panel); }
+  }
+
+  @media (max-width: 420px) {
+    .form-panel { padding: 32px 20px; }
+    .form-head h1 { font-size: 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- PANEL KIRI: BRANDING -->
+  <aside class="brand-panel">
+    <div class="brand-top">
+      <div class="mark">C88</div>
+      <span>CANDIA88</span>
+    </div>
+
+    <div class="brand-hero">
+      <h2>Akses eksklusif,<br><em>satu langkah lagi.</em></h2>
+      <p>Masuk ke dashboard Anda untuk mengelola akun, memantau aktivitas, dan mengakses seluruh layanan Candia88 dalam satu platform terpadu.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>99.9%</strong>
+        <span>Uptime layanan</span>
+      </div>
+      <div class="stat">
+        <strong>256-bit</strong>
+        <span>Enkripsi data</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Dukungan pelanggan</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PANEL KANAN: FORM LOGIN -->
+  <main class="form-panel">
+    <div class="form-card">
+      <header class="form-head">
+        <span class="eyebrow">Area Member</span>
+        <h1>Selamat datang kembali</h1>
+        <p>Masukkan kredensial akun Anda untuk melanjutkan.</p>
+      </header>
+
+      <form id="loginForm" novalidate>
+        <!-- Username -->
+        <div class="field">
+          <label for="username">Username atau Email</label>
+          <div class="control" id="userControl">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <input type="text" id="username" name="username" placeholder="nama@email.com" autocomplete="username" required>
+          </div>
+          <p class="error-text">Username atau email wajib diisi.</p>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="control" id="passControl">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="10" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" autocomplete="current-password" required minlength="8">
+            <button type="button" class="action" id="togglePass" aria-label="Tampilkan password" aria-pressed="false">Lihat</button>
+          </div>
+          <p class="error-text">Password minimal 8 karakter.</p>
+        </div>
+
+        <div class="options">
+          <label class="check">
+            <input type="checkbox" name="remember" checked>
+            Ingat saya
+          </label>
+          <a href="#" class="link">Lupa password?</a>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">
+          <span class="loader" aria-hidden="true"></span>
+          <span class="label">Masuk ke Akun</span>
+        </button>
+      </form>
+
+      <div class="separator">BELUM PUNYA AKUN?</div>
+
+      <p class="signup">
+        <a href="#" class="link">Daftar sekarang</a> — gratis dan cepat.
+      </p>
+
+      <p class="legal">
+        © 2025 Candia88. Seluruh hak dilindungi.<br>
+        Dengan masuk, Anda menyetujui <a href="#" class="link">Syarat &amp; Ketentuan</a> serta <a href="#" class="link">Kebijakan Privasi</a>.
+      </p>
+    </div>
+  </main>
+
+<script>
+(() => {
+  const form       = document.getElementById('loginForm');
+  const userInput  = document.getElementById('username');
+  const passInput  = document.getElementById('password');
+  const userCtrl   = document.getElementById('userControl');
+  const passCtrl   = document.getElementById('passControl');
+  const toggleBtn  = document.getElementById('togglePass');
+  const submitBtn  = document.getElementById('submitBtn');
+
+  // --- Toggle visibilitas password ---
+  toggleBtn.addEventListener('click', () => {
+    const hidden = passInput.type === 'password';
+    passInput.type = hidden ? 'text' : 'password';
+    toggleBtn.textContent = hidden ? 'Sembunyi' : 'Lihat';
+    toggleBtn.setAttribute('aria-pressed', String(hidden));
+    toggleBtn.setAttribute('aria-label', hidden ? 'Sembunyikan password' : 'Tampilkan password');
+    passInput.focus();
+  });
+
+  // --- Validasi realtime (hapus state error saat user mengetik) ---
+  const clearError = (ctrl) => ctrl.classList.remove('invalid');
+
+  userInput.addEventListener('input', () => clearError(userCtrl));
+  passInput.addEventListener('input', () => clearError(passCtrl));
+
+  // --- Validasi saat submit ---
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let valid = true;
+
+    if (!userInput.value.trim()) {
+      userCtrl.classList.add('invalid');
+      valid = false;
+    }
+
+    if (passInput.value.length < 8) {
+      passCtrl.classList.add('invalid');
+      valid = false;
+    }
+
+    if (!valid) {
+      (userCtrl.classList.contains('invalid') ? userInput : passInput).focus();
+      return;
+    }
+
+    // --- Simulasi proses login (ganti dengan fetch ke API Anda) ---
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    /*
+      Contoh integrasi backend:
+
+      fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          username: userInput.value.trim(),
+          password: passInput.value
+        })
+      })
+      .then(res => res.json().then(data => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (ok) { window.location.href = '/dashboard'; }
+        else {
+          passCtrl.classList.add('invalid');
+          document.querySelector('#passControl ~ .error-text').textContent =
+            data.message || 'Kredensial tidak valid.';
+        }
+      })
+      .catch(() => { ... })
+      .finally(() => {
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      });
+    */
+
+    setTimeout(() => {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      passCtrl.classList.add('invalid');
+    }, 1400);
+  });
+})();
+</script>
+</body>
+</html>

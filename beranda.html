@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Candia88 — Beranda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #d10000;
+    --bg-dark: #a30000;
+    --bg-darker: #7a0000;
+    --bg-nav: #5c0000;
+    --bg-card: #8a0000;
+    --accent-orange: #ff9900;
+    --accent-orange-hover: #e68a00;
+    --text-light: #ffffff;
+    --text-muted: #ffcccc;
+    --green-promo: #28a745;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+  }
+
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-light);
+    -webkit-font-smoothing: antialiased;
+    /* Padding bawah yang cukup agar konten terakhir tidak tertutup bottom nav */
+    padding-bottom: 90px; 
+    overflow-x: hidden;
+  }
+
+  /* ============ HEADER LOGO ============ */
+  .app-header {
+    padding: 20px 16px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-main) 100%);
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-header img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+
+  /* ============ TOP MENU (Kategori) ============ */
+  .top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-dark);
+    padding: 12px 10px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 2px solid rgba(0,0,0,0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-light);
+    flex: 1;
+    transition: transform 0.2s;
+  }
+
+  .menu-item:active { transform: scale(0.95); }
+
+  .menu-item img {
+    width: clamp(32px, 8vw, 42px);
+    height: clamp(32px, 8vw, 42px);
+    object-fit: contain;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+  }
+
+  .menu-item span {
+    font-size: clamp(11px, 2.5vw, 13px);
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    white-space: nowrap;
+  }
+
+  /* ============ SECTION TITLE ============ */
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px 12px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .section-title img {
+    width: clamp(28px, 7vw, 36px);
+    height: clamp(28px, 7vw, 36px);
+  }
+
+  .btn-view-all {
+    background-color: var(--bg-darker);
+    color: var(--text-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: clamp(11px, 2.5vw, 13px);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: background 0.2s;
+  }
+
+  .btn-view-all:active { background-color: #4a0000; }
+
+  /* ============ PROVIDER GRID (Slots) ============ */
+  .provider-container {
+    position: relative;
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+
+  .provider-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px 8px; /* Jarak vertikal lebih besar untuk badge */
+    padding: 10px 0;
+  }
+
+  .provider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .provider-item:active { transform: scale(0.92); }
+
+  .provider-icon-wrap {
+    position: relative;
+    width: clamp(48px, 13vw, 60px);
+    height: clamp(48px, 13vw, 60px);
+    margin-bottom: 8px;
+  }
+
+  .provider-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #b30000, #5c0000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+      inset 0 -4px 8px rgba(0,0,0,0.6), 
+      0 4px 8px rgba(0,0,0,0.4),
+      0 0 0 2px rgba(255,255,255,0.1);
+    overflow: hidden;
+  }
+
+  .provider-icon img {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+  }
+  
+  /* Fallback text icon */
+  .provider-icon .text-icon {
+    font-size: clamp(16px, 4vw, 22px);
+    font-weight: 800;
+    color: var(--accent-orange);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+
+  .provider-label {
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--text-light);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Maksimal 2 baris */
+    -webkit-box-orient: vertical;
+  }
+
+  /* Badge Promo/Live */
+  .badge {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(7px, 1.8vw, 9px);
+    font-weight: 800;
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: white;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+
+  .badge.promo { background-color: var(--green-promo); }
+  .badge.live { background-color: #ff3333; }
+
+  /* Panah Navigasi Kiri Kanan */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 64px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(2px);
+  }
+  .nav-arrow.left { left: 0; border-radius: 0 8px 8px 0; }
+  .nav-arrow.right { right: 0; border-radius: 8px 0 0 8px; }
+
+  /* ============ BOTTOM SECTIONS (Sports & Poker) ============ */
+  .bottom-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 20px 16px;
+    background-color: var(--bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .promo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .promo-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 800;
+  }
+
+  .promo-header img { 
+    width: clamp(20px, 5vw, 26px); 
+    height: clamp(20px, 5vw, 26px); 
+  }
+
+  .promo-banner {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #333;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .promo-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .btn-play {
+    background-color: var(--accent-orange);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: clamp(12px, 3vw, 14px);
+    text-decoration: none;
+    box-shadow: 0 4px 0 var(--accent-orange-hover);
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: block;
+  }
+
+  .btn-play:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+
+  /* ============ BOTTOM NAVIGATION (Fixed) ============ */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72px; /* Tinggi fix */
+    background-color: var(--bg-nav);
+    display: flex;
+    align-items: stretch;
+    z-index: 100;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.6);
+  }
+
+  /* Profil / Saldo Box (Kiri) */
+  .nav-profile-box {
+    background-color: var(--accent-orange);
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 120px;
+    max-width: 140px;
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
+
+  .nav-profile-box .balance {
+    font-size: clamp(12px, 3vw, 14px);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .nav-profile-box .username {
+    font-size: clamp(11px, 2.8vw, 13px);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  /* Menu Items (Kanan) */
+  .nav-menu-items {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 10px;
+    gap: 4px;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--text-light);
+    flex: 1;
+    height: 100%;
+    transition: opacity 0.2s;
+  }
+
+  .nav-item:active { opacity: 0.7; }
+
+  .nav-item .icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-item .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .nav-item span {
+    font-size: clamp(10px, 2.5vw, 11px);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* SVG Icons */
+  .svg-icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- HEADER LOGO -->
+  <header class="app-header">
+    <img src="assets/candia88.jpg" alt="Candia88" onerror="this.src='https://via.placeholder.com/220x60/d10000/ffffff?text=CANDIA88'">
+  </header>
+
+  <!-- TOP MENU KATEGORI -->
+  <nav class="top-menu">
+    <a href="#" class="menu-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/2665/2665801.png" alt="Eksklusif" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      <span>Eksklusif</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/3334/3334847.png" alt="Sports" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      <span>Sports+</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/6770/6770823.png" alt="Slots" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      <span>Slots</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/10447/10447748.png" alt="Casino" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      <span>Casino</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/8309/8309553.png" alt="Poker" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      <span>Poker</span>
+    </a>
+  </nav>
+
+  <!-- SECTION SLOTS -->
+  <div class="section-header">
+    <div class="section-title">
+      <img src="https://cdn-icons-png.flaticon.com/512/6770/6770823.png" alt="Slots" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+      Slots
+    </div>
+    <a href="#" class="btn-view-all">Lihat semua</a>
+  </div>
+
+  <div class="provider-container">
+    <div class="nav-arrow left">&lt;</div>
+    <div class="nav-arrow right">&gt;</div>
+
+    <!-- ID game-link untuk JavaScript -->
+    <div class="provider-grid game-link">
+      <!-- Baris 1 -->
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="font-size: clamp(22px, 5vw, 28px);">🔥</span>
+          </div>
+        </div>
+        <span class="provider-label">Hot</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon">S</span>
+          </div>
+          <span class="badge live">LIVE</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">Stream n'Spin</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon">SM</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">Slot Mania</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon">M</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">Microgaming</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon">5G</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">5G Games</span>
+      </div>
+
+      <!-- Baris 2 -->
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #f5b544;">💎</span>
+          </div>
+        </div>
+        <span class="provider-label">Exclusive</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #00d2ff;">★</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">IDNSLOT</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #ff6b6b;">POP</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">PP POP</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #ff9f43;">H</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">Habanero</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #feca57;">♠</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">Spadegaming</span>
+      </div>
+
+      <!-- Baris 3 -->
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #ff9f43; font-size: clamp(22px, 5vw, 28px);">N</span>
+          </div>
+        </div>
+        <span class="provider-label">New</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="font-size: 14px;">PLAY</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">PragmaticPlay</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="font-size: 16px;">PG</span>
+          </div>
+          <span class="badge promo">PROMO</span>
+        </div>
+        <span class="provider-label" style="margin-top: 6px;">PG Soft</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #feca57; font-size: clamp(22px, 5vw, 28px);">⚡</span>
+          </div>
+        </div>
+        <span class="provider-label">Nolimit City</span>
+      </div>
+      <div class="provider-item">
+        <div class="provider-icon-wrap">
+          <div class="provider-icon">
+            <span class="text-icon" style="color: #feca57; font-size: 14px;">JILI</span>
+          </div>
+        </div>
+        <span class="provider-label">JILI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM SECTIONS (SPORTS & POKER) -->
+  <div class="bottom-sections">
+    <!-- Sports -->
+    <div class="promo-card">
+      <div class="promo-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3334/3334847.png" alt="Sports" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+        Sports+
+      </div>
+      <div class="promo-banner game-link">
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=400&auto=format&fit=crop" alt="Sports Banner">
+      </div>
+      <a href="#" class="btn-play game-link">Main Sports+</a>
+    </div>
+
+    <!-- Poker -->
+    <div class="promo-card">
+      <div class="promo-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/8309/8309553.png" alt="Poker" style="filter: sepia(1) saturate(5) hue-rotate(5deg);">
+        Poker
+      </div>
+      <div class="promo-banner game-link">
+        <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=400&auto=format&fit=crop" alt="Poker Banner">
+      </div>
+      <a href="#" class="btn-play game-link">Main Poker</a>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION (FIXED) -->
+  <nav class="bottom-nav">
+    <!-- Saldo & Profil (Diisi via JS) -->
+    <div class="nav-profile-box">
+      <div class="balance" id="user-balance">
+        IDR 0
+      </div>
+      <div class="username" id="user-nickname">
+        <svg class="svg-icon" viewBox="0 0 24 24" style="width: 12px; height: 12px; stroke-width: 3; flex-shrink: 0;">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span style="overflow: hidden; text-overflow: ellipsis;">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Menu Kanan -->
+    <div class="nav-menu-items">
+      <a href="/deposit" class="nav-item">
+        <div class="icon">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            <line x1="12" y1="2" x2="12" y2="4" />
+            <line x1="12" y1="20" x2="12" y2="22" />
+          </svg>
+        </div>
+        <span>Deposit</span>
+      </a>
+      <a href="#" class="nav-item">
+        <div class="icon">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span>Referral</span>
+      </a>
+      <a href="#" class="nav-item">
+        <div class="icon">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <polyline points="20 12 20 22 4 22 4 12"/>
+            <rect x="2" y="7" width="20" height="5"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <span>Bonus</span>
+      </a>
+      <a href="#" class="nav-item">
+        <div class="icon">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="1"/>
+            <circle cx="12" cy="5" r="1"/>
+            <circle cx="12" cy="19" r="1"/>
+          </svg>
+        </div>
+        <span>Menu</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. SIMULASI DATA USER DARI DATABASE / API
+      // Ganti nilai ini dengan data yang di-fetch dari backend Anda
+      const userData = {
+        nickname: "Ldrz666",
+        balance: 0 // Ubah ke 0 untuk mengetes redirect deposit, ubah ke >0 (misal 57000) untuk tes sebaliknya
+      };
+
+      // 2. RENDER DATA KE TAMPILAN
+      const balanceEl = document.getElementById('user-balance');
+      const nicknameEl = document.getElementById('user-nickname');
+
+      // Format saldo dengan pemisah ribuan
+      const formattedBalance = new Intl.NumberFormat('id-ID').format(userData.balance);
+      balanceEl.textContent = `IDR ${formattedBalance}`;
+      
+      // Ganti teks nickname tanpa menghapus ikon SVG
+      nicknameEl.querySelector('span').textContent = userData.nickname;
+
+      // 3. LOGIKA REDIRECT JIKA SALDO 0
+      const gameLinks = document.querySelectorAll('.game-link');
+      
+      if (userData.balance <= 0) {
+        // Jika saldo 0 atau minus, ubah semua klik game menjadi arahkan ke /deposit
+        gameLinks.forEach(link => {
+          link.style.cursor = 'pointer'; // Pastikan kursor menunjuk
+          
+          link.addEventListener('click', (e) => {
+            e.preventDefault(); // Cegah aksi default (jika ada tag <a>)
+            // Redirect ke halaman deposit
+            window.location.href = '/deposit'; 
+            
+            // Opsional: Anda bisa ganti dengan alert untuk testing
+            // alert("Saldo Anda 0. Mengarahkan ke halaman Deposit...");
+          });
+        });
+      } else {
+        // Jika saldo ada, biarkan link berjalan normal
+        // (Anda bisa menambahkan logika buka game / modal di sini)
+        gameLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log("Membuka game...");
+            // window.location.href = '/main-game';
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
